@@ -11,7 +11,6 @@ import Milk from "./Milk";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./store";
 import Login from "./Login";
-import NotFound from "./notfound";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -27,6 +26,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { GiChickenLeg, GiMilkCarton } from "react-icons/gi";
+import NotFound from "./NotFound";
 
 function App() {
   let cart = useSelector((state) => state.cart);
