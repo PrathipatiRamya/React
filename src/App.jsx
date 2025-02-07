@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import VegItems from "./VegItems";
 import NonVegItems from "./NonVegItems";
-import Cart from "./cart";
+import Cart from "./Cart";
 import Orders from "./Orders";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
