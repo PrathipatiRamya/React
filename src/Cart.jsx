@@ -11,33 +11,38 @@ import { useNavigate } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { FaRegSmileBeam } from "react-icons/fa";
+
 function Cart() {
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let cartItems = useSelector((state) => state.cart);
   let finalItems = cartItems.map((item, index) => (
     <li key={index} className="cart-items list-group-item">
-      <span className="fw-bold">{item.name}</span> - &#8377;{item.price} &emsp;
-      <button
-        onClick={() => dispatch(increament(item))}
-        className="btn btn-action btn-increment"
-      >
-        +
-      </button>
-      &emsp;<span className="fw-bold">Quantity: {item.quantity}</span> &emsp;
-      <button
-        onClick={() => dispatch(decrement(item))}
-        className="btn btn-action btn-decrement"
-      >
-        -
-      </button>
-      &emsp;
-      <button
-        onClick={() => dispatch(removeFromCart(item))}
-        className="btn btn-action btn-remove"
-      >
-        Remove
-      </button>
+      <img src={item.image} className="cart-item-image" />
+      <span className="fw-bold cart-item-info">{item.name}</span> - &#8377;
+      {item.price} &emsp;
+      <div className="cart-quantity">
+        <button
+          onClick={() => dispatch(increament(item))}
+          className="btn btn-action btn-increment"
+        >
+          +
+        </button>
+        <span className="cart-quantity-value">{item.quantity}</span>
+        <button
+          onClick={() => dispatch(decrement(item))}
+          className="btn btn-action btn-decrement"
+        >
+          -
+        </button>
+        <button
+          onClick={() => dispatch(removeFromCart(item))}
+          className="btn btn-action btn-remove"
+        >
+          Remove
+        </button>
+      </div>
     </li>
   ));
 
@@ -156,7 +161,7 @@ function Cart() {
                 onChange={(e) => setCouponCode(e.target.value)}
               />
               <button
-                className="btn btn-warning mt-2"
+                className="btn btn-warning mt-2 justify-content-center"
                 onClick={() => handleCoupon()}
               >
                 Apply Coupon
@@ -180,8 +185,11 @@ function Cart() {
           </div>
         </div>
       ) : (
-        <div className="empty-cart">
-          <p>Your cart is empty</p>
+        <div style={{ paddingLeft: "650px" }}>
+          <p>
+            Your cart is empty <br /> Let start purchase the Items....
+            <FaRegSmileBeam className="me-2" />
+          </p>
           <button onClick={() => navigate("/home")} className="btn btn-success">
             Browse Products
           </button>

@@ -1,56 +1,92 @@
 import { useDispatch, useSelector } from "react-redux";
-import store, { addToCart } from "./store";
-
-import "bootstrap/dist/css/bootstrap.min.css";
+import { addToCart } from "./store";
 import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function VegItems() {
-  //take theproducts from store by using useSelector()
   let vegItems = useSelector((state) => state.products.veg);
-
-  //craete object for useDispatch() for taking the actions from reducers
   let dispatch = useDispatch();
-  // let cartItems = useSelector((state) => state.cart);
-  // let cartItem = 0;
+
+  let auth = useSelector((state) => state.auth);
+  let isAuthenticated = auth.isAuthenticated;
+
   let perPage = 4;
   let totalPages = Math.ceil(vegItems.length / perPage);
   let [pageNumber, setPageNumber] = useState(1);
+  let [below100, setBelow100] = useState(false);
+  let [above100, setAbove100] = useState(false);
+
+  let handleBelow100Change = () => {
+    setBelow100(!below100);
+  };
+
+  let handleAbove100Change = () => {
+    setAbove100(!above100);
+  };
+
+  let filteredItems = vegItems.filter((item) => {
+    if (below100 && above100) return true;
+    if (below100) return item.price < 50;
+    if (above100) return item.price >= 50;
+    return true;
+  });
+
   let pageEndIndex = pageNumber * perPage;
   let pageStartIndex = pageEndIndex - perPage;
-  let currentItems = vegItems.slice(pageStartIndex, pageEndIndex);
+  let currentItems = filteredItems.slice(pageStartIndex, pageEndIndex);
+
   let handlePage = (page) => {
     if (page >= 1 && page <= totalPages) {
       setPageNumber(page);
     }
   };
 
-  let allItems = currentItems.map((item, index) => (
-    // cartItem = cartItems.find((cartItem) => cartItem.name === item.name);
-    <div className="items-container image-container ">
-      <div>
-        <img src={item.image} width={150} height={150} />
-        <div key={index}>
-          {item.name} - &#8377;{item.price} &emsp;
-          {/* {!cartItem ? ( */}
-          <button
-            onClick={() => dispatch(addToCart(item))}
-            className="btn btn-success w-100 "
-          >
-            AddToCart
-          </button>
-          {/* ) : (
-            <button>2</button>
-          )} */}
-        </div>
-      </div>
-    </div>
-  ));
-
   return (
     <>
       <div className="container mt-4 text-center">
         <h1 className="mb-5 w-100">Veg Items</h1>
-        <div className="dis ">{allItems}</div>
+        <label>Apply Filters:</label> &emsp;
+        <input
+          type="checkbox"
+          checked={below100}
+          onChange={handleBelow100Change}
+        />
+        Below 50 &emsp;
+        <input
+          type="checkbox"
+          checked={above100}
+          onChange={handleAbove100Change}
+        />
+        Above 50
+        <div className="dis">
+          {currentItems.map((item, index) => (
+            <div key={index} className="items-container image-container">
+              <div>
+                <img
+                  src={item.image}
+                  width={150}
+                  height={150}
+                  alt={item.name}
+                />
+                <div>
+                  {item.name} - &#8377;{item.price} &emsp;
+                  <button
+                    onClick={() => {
+                      {
+                        isAuthenticated
+                          ? dispatch(addToCart(item))
+                          : alert("Login in your account");
+                      }
+                    }}
+                    className="btn btn-success w-100"
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
         <button
           onClick={() => handlePage(pageNumber - 1)}
           disabled={pageNumber === 1}
@@ -90,4 +126,5 @@ function VegItems() {
     </>
   );
 }
+
 export default VegItems;

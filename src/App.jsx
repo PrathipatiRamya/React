@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import VegItems from "./VegItems";
 import NonVegItems from "./NonVegItems";
-import Cart from "./Cart";
+
 import Orders from "./Orders";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
@@ -27,6 +27,7 @@ import {
 } from "react-icons/fa";
 import { GiChickenLeg, GiMilkCarton } from "react-icons/gi";
 import NotFound from "./NotFound";
+import Cart from "./Cart";
 
 function App() {
   let cart = useSelector((state) => state.cart);
@@ -42,6 +43,12 @@ function App() {
       <BrowserRouter>
         <nav className="navbar navbar-expand-lg navbar-light  shadow-sm p-3 mb-4 fixed-top ">
           <div className="container-fluid">
+            <img
+              src="./pr_logo.jpg"
+              width={50}
+              height={50}
+              style={{ borderRadius: "50px" }}
+            />
             <Link to="/home" className="navbar-brand fw-bold linkstyle">
               <FaHome className="me-2" /> Home
             </Link>
@@ -77,11 +84,12 @@ function App() {
                   onClick={() => dispatch(logout())}
                   className="btn btn-outline-danger ms-2"
                 >
-                  Logout
+                  <FaSignOutAlt className="me-2" /> Logout
                 </button>
               </div>
             ) : (
               <Link to="/login" className="btn btn-outline-primary ms-2">
+                <FaSignInAlt className="me-2" />
                 SignIn
               </Link>
             )}
@@ -89,6 +97,7 @@ function App() {
         </nav>
         <div className="container">
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/veg" element={<VegItems />} />
             <Route path="/nonveg" element={<NonVegItems />} />
