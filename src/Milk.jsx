@@ -108,6 +108,7 @@ function Milk() {
             backgroundColor: "pink",
             color: "black",
             borderColor: "black",
+            borderRadius: "50px",
           }}
         >
           Previous
@@ -118,7 +119,10 @@ function Milk() {
             onClick={() => handlePage(index + 1)}
             style={{
               margin: "0 5px",
-              backgroundColor: pageNumber === index + 1 ? "gray" : "black",
+              color: "red",
+              backgroundColor: pageNumber === index + 1 ? "gray" : "white",
+              borderRadius: "10px",
+              borderColor: "black",
             }}
           >
             {index + 1}
@@ -132,6 +136,7 @@ function Milk() {
             backgroundColor: "pink",
             color: "black",
             borderColor: "black",
+            borderRadius: "50px",
           }}
         >
           Next

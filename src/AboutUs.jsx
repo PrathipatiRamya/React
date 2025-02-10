@@ -7,7 +7,7 @@ function AboutUs() {
         <div className="col-md-8 mx-auto text-center">
           <h1 className="mb-4 text-primary fw-bold">About Us</h1>
           <p className="lead">
-            Welcome to <b>Our Store</b>, your number one source for the freshest
+            Welcome to <b>PR Store</b>, your number one source for the freshest
             and tastiest food items. We're dedicated to providing you the very
             best of products, with an emphasis on **quality, hygiene, and
             customer satisfaction**.

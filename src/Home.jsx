@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { addToCart } from "./store";
 function Home() {
   let veg = useSelector((state) => state.products.veg);
   let nonveg = useSelector((state) => state.products.nonveg);

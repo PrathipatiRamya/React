@@ -94,6 +94,7 @@ function VegItems() {
             backgroundColor: "pink",
             color: "black",
             borderColor: "black",
+            borderRadius: "50px",
           }}
         >
           Previous
@@ -104,7 +105,10 @@ function VegItems() {
             onClick={() => handlePage(index + 1)}
             style={{
               margin: "0 5px",
-              backgroundColor: pageNumber === index + 1 ? "gray" : "black",
+              color: "red",
+              backgroundColor: pageNumber === index + 1 ? "gray" : "white",
+              borderColor: "black",
+              borderRadius: "10px",
             }}
           >
             {index + 1}
@@ -118,6 +122,7 @@ function VegItems() {
             backgroundColor: "pink",
             color: "black",
             borderColor: "black",
+            borderRadius: "50px",
           }}
         >
           Next
