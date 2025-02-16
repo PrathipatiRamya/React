@@ -2,12 +2,16 @@ import { useNavigate } from "react-router-dom";
 // import "./home.css"; // Import CSS for styling
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { addToCart } from "./store";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, decrement, increament } from "./store";
 function Home() {
   let veg = useSelector((state) => state.products.veg);
   let nonveg = useSelector((state) => state.products.nonveg);
   let milk = useSelector((state) => state.products.milk);
+
+  let dispatch = useDispatch();
+  let cartItems = useSelector((state) => state.cart);
+
   let allProducts = [...veg, ...nonveg, ...milk];
   let navigate = useNavigate();
   let [searchText, setSearchText] = useState("");
@@ -50,20 +54,47 @@ function Home() {
             {filteredItems.map((item, index) => (
               <div key={index} className="item-card">
                 <img src={item.image} alt={item.name} className="item-image" />
-                <h4>{item.name}</h4>
+                <p style={{ textDecoration: "bold" }}>{item.name}</p>
                 <p className="price">₹{item.price}</p>
-                <button
-                  className="btn btn-success"
-                  onClick={() => {
-                    {
-                      isAuthenticated
-                        ? dispatch(addToCart(item))
-                        : alert("Login in your account");
-                    }
-                  }}
-                >
-                  Add to Cart
-                </button>
+
+                {/* modify the addtocart */}
+
+                <div className=" items-container image-container p-0">
+                  {cartItems.some((cartitem) => cartitem.name === item.name) ? (
+                    <div className="cart-control ">
+                      <button
+                        onClick={() => dispatch(increament(item))}
+                        className="btn btn-increment" //btn-action
+                      >
+                        +
+                      </button>
+                      <span className="cart-quantity-value">
+                        {cartItems.find(
+                          (cartitem) => cartitem.name === item.name
+                        )?.quantity || 1}
+                        {/* {item.quantity} */}
+                      </span>
+                      <button
+                        onClick={() => dispatch(decrement(item))}
+                        className="btn btn-decrement"
+                      >
+                        -
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        isAuthenticated
+                          ? dispatch(addToCart(item))
+                          : alert("Login in your account");
+                      }}
+                      className="btn btn-success w-100 "
+                      // style={{ width: "180px" }}
+                    >
+                      Add To Cart
+                    </button>
+                  )}
+                </div>
               </div>
             ))}
           </div>

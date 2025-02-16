@@ -23,19 +23,21 @@ function Cart() {
       <span className="fw-bold cart-item-info">{item.name}</span> - &#8377;
       {item.price} &emsp;
       <div className="cart-quantity">
-        <button
-          onClick={() => dispatch(increament(item))}
-          className="btn btn-action btn-increment"
-        >
-          +
-        </button>
-        <span className="cart-quantity-value">{item.quantity}</span>
-        <button
-          onClick={() => dispatch(decrement(item))}
-          className="btn btn-action btn-decrement"
-        >
-          -
-        </button>
+        <div className="cart-control2 ">
+          <button
+            onClick={() => dispatch(increament(item))}
+            className="btn btn-action btn-increment"
+          >
+            +
+          </button>
+          <span className="cart-quantity-value">{item.quantity}</span>
+          <button
+            onClick={() => dispatch(decrement(item))}
+            className="btn btn-action btn-decrement"
+          >
+            -
+          </button>
+        </div>
         <button
           onClick={() => dispatch(removeFromCart(item))}
           className="btn btn-action btn-remove"
@@ -101,11 +103,20 @@ function Cart() {
   finalAmount = finalAmount - couponAmount;
 
   let handlePurchase = () => {
-    let purchaseDate = new Date().toLocaleDateString();
+    const currentDate = new Date();
+    let purchaseDate = new Date().toLocaleDateString("en-IN"); // Example: 05/02/2025
+    const formattedTime = currentDate.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }); // Example: 10:30:15 PM
+
     let purchaseItems = {
       items: [...cartItems],
-      finalPrice: finalAmount,
+      finalPrice: finalAmount.toFixed(2),
       date: purchaseDate,
+      time: formattedTime,
     };
     dispatch(purchaseList(purchaseItems));
     dispatch(clearCart());
@@ -161,7 +172,7 @@ function Cart() {
                 onChange={(e) => setCouponCode(e.target.value)}
               />
               <button
-                className="btn btn-warning mt-2 justify-content-center"
+                className="btn btn-warning mt-2"
                 onClick={() => handleCoupon()}
               >
                 Apply Coupon
@@ -176,12 +187,20 @@ function Cart() {
             )}
 
             <p className="fw-bold mt-3">
-              Your Net amount to pay : &#8377;{finalAmount}
+              Your Net amount to pay : &#8377;{finalAmount.toFixed(2)}
             </p>
-
-            <button onClick={() => handlePurchase()} className="purchase-btn">
-              Complete Purchase
-            </button>
+            <div style={{ paddingLeft: "200px" }}>
+              <button
+                onClick={() => handlePurchase()}
+                style={{
+                  backgroundColor: "green",
+                  borderRadius: "5px",
+                  marginBottom: "10px",
+                }}
+              >
+                Complete Purchase
+              </button>
+            </div>
           </div>
         </div>
       ) : (

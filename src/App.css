@@ -130,7 +130,7 @@ h1 {
 /* cart
 /* Cart Container */
 .cart-container {
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
   padding-top: 100px;
 
@@ -155,6 +155,10 @@ h1 {
 
 .cart-quantity {
   border-color: red;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5px;
+  /* position: relative; */
 }
 
 /* Cart Items */
@@ -165,6 +169,7 @@ h1 {
   padding: 12px;
   border-bottom: 1px solid #ddd;
   position: relative;
+  width: 90vh;
 }
 
 /* Ensure Remove Button Stays Inside */
@@ -173,11 +178,12 @@ h1 {
   color: white;
   padding: 5px 8px;
   border: none;
-  border-radius: 5px;
+  /* border-radius: 15px; */
   cursor: pointer;
   font-size: 12px;
   white-space: nowrap;
   position: relative;
+  margin-left: 20px;
 }
 
 .btn-remove:hover {
@@ -209,6 +215,74 @@ h1 {
   padding: 10px;
   z-index: 100;
   border-bottom: 2px solid #ddd;
+}
+
+/* .cart-button-broder {
+  border: 1px solid red;
+  border-radius: 20px;
+} */
+
+.cart-control {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  padding: 5px;
+  margin-left: 20px;
+  border-radius: 10px;
+  width: 150px;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.cart-control2 {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  padding: 5px;
+  /* margin-left: 20px; */
+  border-radius: 10px;
+  width: 100px;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.btn-increment,
+.btn-decrement {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  align-items: center;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.btn-increment:hover,
+.btn-decrement:hover {
+  color: black;
+  background-color: #cc0000;
+}
+
+.cart-quantity-value {
+  /* background-color: black; */
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-add-to-cart {
+  background-color: green;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /*Home */
@@ -315,4 +389,136 @@ h1 {
   font-size: 18px;
   font-weight: bold;
   color: #28a745;
+}
+
+/*orders*/
+/* Center the Orders Page */
+.orders-container {
+  width: 900px; /* Adjust width */
+  margin: auto; /* Center horizontally */
+  padding: 20px;
+  text-align: center;
+  /* Align everything in the center */
+  padding-left: 600px;
+}
+
+/* Header Styling */
+.orders-header {
+  /* background: #007bff; */
+  color: rgb(10, 29, 236);
+  padding: 12px;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding-top: 150px;
+}
+
+/* Orders List - Centered */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center orders */
+}
+
+/* Order Card */
+.order-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 800px;
+  /* max-width: 500px; Centered and readable */
+  margin-bottom: 15px;
+}
+
+.order-card:hover {
+  transform: scale(1.02);
+  background-color: aqua;
+}
+
+/* Order Date
+.order-date {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 5px;
+} */
+.order-date,
+.order-time {
+  font-size: 14px;
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Total Price */
+.final-price {
+  color: #28a745;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Order Items List */
+.order-items-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Order Item */
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  justify-content: center; /* Center items */
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+/* Order Item Image */
+.order-item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Order Item Info */
+.order-item-info {
+  text-align: left;
+}
+
+/* No Orders Section */
+.no-orders {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.no-orders p {
+  font-size: 18px;
+  color: #777;
+}
+
+.browse-button {
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.browse-button:hover {
+  background: #218838;
+}
+
+.purchase-btn {
+  background-color: "green";
+  color: "white";
 }
