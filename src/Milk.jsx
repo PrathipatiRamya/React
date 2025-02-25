@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decrement, increament } from "./store";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Milk() {
   let milkItems = useSelector((state) => state.products.milk);
   let dispatch = useDispatch();
+  let navigate = useNavigate();
 
   let auth = useSelector((state) => state.auth);
   let isAuthenticated = auth.isAuthenticated;
@@ -116,7 +118,7 @@ function Milk() {
                       onClick={() => {
                         isAuthenticated
                           ? dispatch(addToCart(item))
-                          : alert("Login in your account");
+                          : alert("Login in your account", navigate("/login"));
                       }}
                       className="btn btn-success w-100"
                     >

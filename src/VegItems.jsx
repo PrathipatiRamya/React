@@ -2,10 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decrement, increament } from "./store";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 function VegItems() {
   let vegItems = useSelector((state) => state.products.veg);
   let dispatch = useDispatch();
+  let navigate = useNavigate();
 
   let auth = useSelector((state) => state.auth);
   let isAuthenticated = auth.isAuthenticated;
@@ -104,7 +106,7 @@ function VegItems() {
                       onClick={() => {
                         isAuthenticated
                           ? dispatch(addToCart(item))
-                          : alert("Login in your account");
+                          : alert("Login in your account", navigate("/login"));
                       }}
                       className="btn btn-success w-100"
                     >

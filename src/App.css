@@ -230,6 +230,7 @@ h1 {
   margin-left: 20px;
   border-radius: 10px;
   width: 150px;
+  /* margin: 0px; */
   justify-content: space-between;
   background-color: white;
 }
@@ -251,7 +252,7 @@ h1 {
   background-color: red;
   color: white;
   border: none;
-  padding: 5px;
+  padding: 0px;
   align-items: center;
   cursor: pointer;
   width: 30px;

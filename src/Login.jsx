@@ -29,11 +29,21 @@ function Login() {
           <h1 className="text-center mb-4">Login Page</h1>
           <div className="mb-3">
             <label className="form-label">Username: </label>
-            <input type="text" ref={username} className="form-control" />
+            <input
+              type="text"
+              ref={username}
+              className="form-control"
+              placeholder="Ramya"
+            />
           </div>
 
           <label className="form-label">Password: </label>
-          <input type="password" ref={password} className="form-control" />
+          <input
+            type="password"
+            ref={password}
+            className="form-control"
+            placeholder="Ramya@123"
+          />
           <br />
           <br />
           <button

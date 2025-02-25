@@ -104,7 +104,7 @@ function NonVegItems() {
                       onClick={() => {
                         isAuthenticated
                           ? dispatch(addToCart(item))
-                          : alert("Login in your account");
+                          : alert("Login in your account", navigate("/login"));
                       }}
                       className="btn btn-success w-100"
                     >
